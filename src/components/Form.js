@@ -27,24 +27,27 @@ export default class Form extends Component {
   constructor(props) {
     super(props);
     this.state = this.getStateFromProps(props);
-    if (
-      this.props.onChange &&
-      !deepEquals(this.state.formData, this.props.formData)
-    ) {
-      this.props.onChange(this.state);
-    }
+    // REVERT: https://github.com/mozilla-services/react-jsonschema-form/pull/1034
+    // if (
+    //   this.props.onChange &&
+    //   !deepEquals(this.state.formData, this.props.formData)
+    // ) {
+    //   this.props.onChange(this.state);
+    // }
+
     this.formElement = null;
   }
 
   componentWillReceiveProps(nextProps) {
     const nextState = this.getStateFromProps(nextProps);
-    if (
-      !deepEquals(nextState.formData, nextProps.formData) &&
-      !deepEquals(nextState.formData, this.state.formData) &&
-      this.props.onChange
-    ) {
-      this.props.onChange(nextState);
-    }
+    // REVERT: https://github.com/mozilla-services/react-jsonschema-form/pull/1034
+    // if (
+    //   !deepEquals(nextState.formData, nextProps.formData) &&
+    //   !deepEquals(nextState.formData, this.state.formData) &&
+    //   this.props.onChange
+    // ) {
+    //   this.props.onChange(nextState);
+    // }
     this.setState(nextState);
   }
 
